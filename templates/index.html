@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ask the video</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <h1>Ask the video</h1>
+    <form id="load-form" class="load" autocomplete="off">
+      <label class="sr" for="url">YouTube link or video ID</label>
+      <input id="url" type="text" placeholder="Paste a YouTube link" required>
+      <button id="load-btn" type="submit">Load video</button>
+    </form>
+  </header>
+
+  <p id="status" class="status" role="status"></p>
+
+  <section id="intro" class="intro">
+    <p>Paste a link to any video that has captions. Ask about something said in it, and each answer points back to the moment it was said.</p>
+  </section>
+
+  <main id="stage" class="stage" hidden>
+    <section class="player" aria-label="Video">
+      <div class="frame">
+        <iframe id="player" title="YouTube video player"
+                allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p id="video-title" class="video-title"></p>
+    </section>
+
+    <section class="chat" aria-label="Conversation">
+      <ol id="log" class="log" aria-live="polite"></ol>
+      <form id="ask-form" class="ask">
+        <label class="sr" for="q">Your question</label>
+        <textarea id="q" rows="2" placeholder="What does the speaker say about…" required></textarea>
+        <button id="ask-btn" type="submit">Ask</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
